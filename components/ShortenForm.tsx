@@ -65,38 +65,41 @@ export function ShortenForm() {
           value={url}
           onChange={(e) => setUrl(e.target.value)}
           placeholder="Paste a long URL, e.g. https://example.com/very/long/path"
-          className="flex-1 rounded-lg border border-slate-300 px-4 py-3 text-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
+          className="flex-1 rounded-xl border border-slate-300 bg-white px-4 py-3.5 text-sm text-slate-900 shadow-sm transition focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/30"
         />
         <button
           type="submit"
           disabled={loading}
-          className="rounded-lg bg-indigo-600 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-indigo-700 disabled:opacity-60"
+          className="rounded-xl bg-gradient-to-br from-indigo-600 to-violet-600 px-6 py-3.5 text-sm font-semibold text-white shadow-sm transition hover:opacity-90 disabled:opacity-60"
         >
-          {loading ? "Shortening…" : "Shorten"}
+          {loading ? "Shortening…" : "Shorten link"}
         </button>
       </form>
 
       {error && (
-        <p role="alert" className="mt-3 text-sm text-red-600">
+        <p role="alert" className="mt-3 flex items-center gap-1.5 text-sm text-red-600">
+          <svg viewBox="0 0 20 20" className="h-4 w-4 shrink-0" fill="currentColor" aria-hidden="true">
+            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9 9a1 1 0 012 0v4a1 1 0 11-2 0V9zm1-4a1 1 0 100 2 1 1 0 000-2z" clipRule="evenodd" />
+          </svg>
           {error}
         </p>
       )}
 
       {result && (
-        <div className="mt-6 rounded-lg border border-slate-200 bg-white p-4">
-          <p className="text-xs uppercase tracking-wide text-slate-400">Your short link</p>
+        <div className="mt-5 rounded-xl border border-indigo-100 bg-indigo-50/50 p-4">
+          <p className="text-xs font-medium uppercase tracking-wide text-indigo-400">Your short link</p>
           <div className="mt-2 flex items-center justify-between gap-3">
             <a
               href={result.shortUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="truncate font-medium text-indigo-600 hover:underline"
+              className="truncate text-base font-semibold text-indigo-600 hover:underline"
             >
               {result.shortUrl}
             </a>
             <button
               onClick={copy}
-              className="shrink-0 rounded-md border border-slate-300 px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-50"
+              className="shrink-0 rounded-lg bg-white px-3 py-1.5 text-sm font-medium text-slate-700 shadow-sm ring-1 ring-slate-200 transition hover:bg-slate-50"
             >
               {copied ? "Copied!" : "Copy"}
             </button>
