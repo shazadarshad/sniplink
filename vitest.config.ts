@@ -4,6 +4,9 @@ import { fileURLToPath } from "node:url";
 export default defineConfig({
   test: {
     environment: "node",
+    env: {
+      SNIPLINK_DB: ":memory:",
+    },
   },
   resolve: {
     alias: {
